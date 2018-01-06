@@ -5,15 +5,28 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class getContainer extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            fetched: false
+        }
+    }
 
     componentDidMount() {
         const { getModels } = this.props.actions
         getModels()
     }
 
-    render() {
+    getModels() {
         const { getModels } = this.props.actions
-        console.log(this.props)
+        getModels()
+        this.setState({ fetched: true})
+    }
+
+    render() {
+        // const { getModels } = this.props.actions
+        const { models } = this.props.anotherReducer
+        const { fetched } = this.state
         return (
             <div className='container'>
                 <div className='row'>
@@ -22,17 +35,17 @@ class getContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">GET Request</h5>
-                                <button onClick={() => getModels()} type="button" className="btn btn-primary">GET</button>
+                                <button onClick={() => this.getModels()} type="button" className="btn btn-primary">GET</button>
                               </div>
                             </div>
                             <br />
                             <ul className="list-group">
                                 {
-                                    this.props.anotherReducer.models ? 
-                                        this.props.anotherReducer.models.length === 0 ?
-                                            <div className="alert alert-primary" role="alert">There are currently no models created!</div>
+                                    models ? 
+                                        fetched === false ?
+                                            <div className="alert alert-primary" role="alert">There are currently {models.length} models created!</div>
                                             :
-                                            this.props.anotherReducer.models.map((model, i) => {
+                                            models.map((model, i) => {
                                                 return (
                                                     <li className="list-group-item" key={`${model._id}`}>
                                                         <span className="badge badge-pill badge-primary float-right">{model._id}</span>
