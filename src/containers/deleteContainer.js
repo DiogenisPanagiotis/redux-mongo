@@ -5,16 +5,16 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class deleteContainer extends Component {
-    delete() {
-        if (this.props.anotherReducer.models) {
-            this.props.anotherReducer.models.forEach((model, i) => {
-                this.props.actions.deleteModel(model)
-            })
+    constructor(props){
+        super(props)
+        this.state = {
+            modelId: ''
         }
     }
+    
     render() {
-        const { addModel, getModels } = this.props.actions
-        console.log(this.props)
+        const { deleteModel } = this.props.actions
+        const { modelId } = this.state
         return (
             <div className='container'>
                 <div className='row'>
@@ -23,7 +23,16 @@ class deleteContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">DELETE Request</h5>
-                                <button onClick={() => this.delete() } type="button" className="btn btn-danger">DELETE</button>
+                                <input 
+                                    autoFocus 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={this.state.modelId} 
+                                    placeholder="Model Id" 
+                                    onChange = { ({target}) => this.setState({modelId: target.value}) }
+                                    />
+                                <br/>
+                                <button onClick={() => deleteModel(modelId) } type="button" className="btn btn-danger">DELETE</button>
                               </div>
                             </div>
                         </div>

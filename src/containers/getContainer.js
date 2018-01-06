@@ -6,8 +6,13 @@ import '../Style.css'
 
 class getContainer extends Component {
 
+    componentDidMount() {
+        const { getModels } = this.props.actions
+        getModels()
+    }
+
     render() {
-        const { addModel, getModels } = this.props.actions
+        const { getModels } = this.props.actions
         console.log(this.props)
         return (
             <div className='container'>
@@ -22,15 +27,21 @@ class getContainer extends Component {
                             </div>
                             <br />
                             <ul className="list-group">
-                                {this.props.anotherReducer.models ? this.props.anotherReducer.models.map((model, i) => {
-                                    return (
-                                        <li className="list-group-item" key={`${model._id}`}>
-                                            {model.name}
-                                        </li>
-                                    )
-                                })
-                                :
-                                ''
+                                {
+                                    this.props.anotherReducer.models ? 
+                                        this.props.anotherReducer.models.length === 0 ?
+                                            <div className="alert alert-primary" role="alert">There are currently no models created!</div>
+                                            :
+                                            this.props.anotherReducer.models.map((model, i) => {
+                                                return (
+                                                    <li className="list-group-item" key={`${model._id}`}>
+                                                        <span className="badge badge-pill badge-primary float-right">{model._id}</span>
+                                                        {model.name}
+                                                    </li>
+                                                )
+                                            })
+                                            :
+                                            ''
                                 }
                             </ul>
                         </div>

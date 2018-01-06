@@ -15,9 +15,9 @@ const actions = {
         type: UPDATE_MODEL,
         payload: service.updateModel(model)
     }),
-    deleteModel: (model) => ({
+    deleteModel: (modelId) => ({
         type: DELETE_MODEL,
-        payload: service.deleteModel(model)
+        payload: service.deleteModel(modelId)
     })
     
 }
