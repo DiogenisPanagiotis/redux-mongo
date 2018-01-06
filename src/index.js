@@ -1,0 +1,27 @@
+import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import App from './containers/App';
+import getContainer from './containers/getContainer';
+import postContainer from './containers/postContainer';
+import putContainer from './containers/putContainer';
+import deleteContainer from './containers/deleteContainer';
+import homeContainer from './containers/homeContainer';
+
+render(
+    <Provider store={store}>
+        <BrowserRouter>
+        	<div>
+	            <Route path="/" component={App}/>
+	            <Route exact path="/" component={homeContainer}/>
+	            <Route path="/get" component={getContainer}/>
+	            <Route path="/post" component={postContainer}/>
+	            <Route path="/put" component={putContainer}/>
+	            <Route path="/delete" component={deleteContainer}/>
+        	</div>
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById('app')
+)
