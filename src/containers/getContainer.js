@@ -43,7 +43,7 @@ class getContainer extends Component {
                                 {
                                     models ? 
                                         fetched === false ?
-                                            <div className="alert alert-primary" role="alert">There are currently {models.length} models created!</div>
+                                            <div className="alert alert-primary" role="alert">There are currently <b>{models.length}</b> models created!</div>
                                             :
                                             models.map((model, i) => {
                                                 return (

@@ -36,3 +36,11 @@
 .float-right {
 	margin-top: 4px;
 }
+
+.list-group-item:hover {
+	font-style: italic;
+}
+
+.form-control {
+	border: solid 1px #eee;
+}
