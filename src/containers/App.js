@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 class App extends Component {
 
     renderBreadcrumbs() {
-        const crud = ['', 'get', 'post', 'put', 'delete']
+        const crud = ['', 'get', 'post', 'put', 'delete', 'register', 'login']
         let crudClasses = []
         let path = window.location.pathname.slice(1)
 
@@ -24,6 +24,8 @@ class App extends Component {
                 <li className={`${crudClasses[2]}`}><Link to="/post">Post</Link></li>
                 <li className={`${crudClasses[3]}`}><Link to="/put">Put</Link></li>
                 <li className={`${crudClasses[4]}`}><Link to="/delete">Delete</Link></li>
+                <li className={`${crudClasses[5]}`}><Link to="/register">Register</Link></li>
+                <li className={`${crudClasses[6]}`}><Link to="/login">Login</Link></li>
               </ol>
             </nav>
         )
@@ -31,7 +33,6 @@ class App extends Component {
 
     render() {
         const { getModels } = this.props.actions
-        console.log(this.props)
         return (
             <div className='container'>
                 <div className='row'>

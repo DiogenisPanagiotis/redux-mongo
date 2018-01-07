@@ -24,6 +24,10 @@ module.exports = function (app, express) {
         .put(controller.updateModel)
         .delete(controller.deleteModel);
 
+    router.route('/users')
+        .get(controller.getUsers)
+        .post(controller.addUser)
+
     app.use('/api', router)
 
     app.get('/*', (req, res) => {

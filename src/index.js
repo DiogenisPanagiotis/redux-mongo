@@ -9,6 +9,8 @@ import postContainer from './containers/postContainer'
 import putContainer from './containers/putContainer'
 import deleteContainer from './containers/deleteContainer'
 import homeContainer from './containers/homeContainer'
+import loginContainer from './containers/loginContainer'
+import registerContainer from './containers/registerContainer'
 
 render(
     <Provider store={store}>
@@ -19,7 +21,9 @@ render(
 	            <Route path="/get" component={getContainer}/>
 	            <Route path="/post" component={postContainer}/>
 	            <Route path="/put" component={putContainer}/>
-	            <Route path="/delete" component={deleteContainer}/>
+                <Route path="/delete" component={deleteContainer}/>
+                <Route path="/register" component={registerContainer}/>
+	            <Route path="/login" component={loginContainer}/>
         	</div>
         </BrowserRouter>
     </Provider>,

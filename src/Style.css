@@ -44,3 +44,7 @@
 .form-control {
 	border: solid 1px #eee;
 }
+
+.alert-success, .alert-primary, .alert-danger {
+	margin-top: 1rem;
+}
