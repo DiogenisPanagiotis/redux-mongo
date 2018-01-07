@@ -5,15 +5,19 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class postContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            modelName: ''
-        }
+
+    postButtonClick(modelName) {
+        const { addModel, resetPosted, resetModelName } = this.props.actions
+        addModel({ name: modelName })
+        resetModelName()
+        setTimeout(() => {
+            resetPosted()
+        }, 3000)
     }
+
     render() {
-        const { addModel } = this.props.actions
-        console.log(this.props)
+        const { addModel, postModelName, resetPosted } = this.props.actions
+        const { modelName, posted } = this.props.postReducer
         return (
             <div className='container'>
                 <div className='row'>
@@ -26,12 +30,13 @@ class postContainer extends Component {
                                     autoFocus 
                                     type="text" 
                                     className="form-control" 
-                                    value={this.state.modelName} 
+                                    value={modelName} 
                                     placeholder="Model name" 
-                                    onChange = { ({target}) => this.setState({modelName: target.value}) }
+                                    onChange = { ({target}) => postModelName(target.value) }
                                     />
                                 <br/>
-                                <button onClick={() => addModel({ name: this.state.modelName })} type="button" className="btn btn-success">POST</button>
+                                { posted ? <div className="alert alert-success alert-post" role="alert"> Post request succeessful! </div> : null}
+                                <button onClick={() => this.postButtonClick(modelName)} type="button" className="btn btn-success">POST</button>
                               </div>
                             </div>
                         </div>
@@ -44,8 +49,8 @@ class postContainer extends Component {
 
 
 function mapStateToProps(state) {
-    const { statusReducer, anotherReducer } = state
-    return { statusReducer, anotherReducer }
+    const { anotherReducer, postReducer } = state
+    return { anotherReducer, postReducer }
 }
 
 function mapDispatchToProps(dispatch) {

@@ -48,3 +48,7 @@
 .alert-success, .alert-primary, .alert-danger {
 	margin-top: 1rem;
 }
+
+.alert-post {
+	margin-top: 0px;
+}

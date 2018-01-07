@@ -33,6 +33,7 @@ class App extends Component {
 
     render() {
         const { getModels } = this.props.actions
+        console.log(this.props)
         return (
             <div className='container'>
                 <div className='row'>
