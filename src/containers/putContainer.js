@@ -13,7 +13,10 @@ class putContainer extends Component {
 
     updateModel(newModel) {
         const { updateModel } = this.props.actions
-        updateModel(newModel)
+        const { modelId, modelName } = this.props.putReducer
+        if (modelId.length > 0 && modelName.length > 0) {
+            updateModel(newModel)
+        }
     }
 
     render() {
