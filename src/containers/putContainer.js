@@ -5,13 +5,6 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class putContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            modelId: '',
-            modelName: ''
-        }
-    }
 
     componentDidMount() {
         const { getModels } = this.props.actions
@@ -24,7 +17,8 @@ class putContainer extends Component {
     }
 
     render() {
-        const { addModel, getModels } = this.props.actions
+        const { addModel, getModels, putModelId, putModelName } = this.props.actions
+        const { modelId, modelName } = this.props.putReducer
         return (
             <div className='container'>
                 <div className='row'>
@@ -38,19 +32,19 @@ class putContainer extends Component {
                                     autoFocus 
                                     type="text" 
                                     className="form-control" 
-                                    value={this.state.modelId} 
+                                    value={modelId} 
                                     placeholder="Model Id" 
-                                    onChange = { ({target}) => this.setState({modelId: target.value}) }
+                                    onChange = { ({target}) => putModelId({modelId: target.value}) }
                                     />
                                   <input 
                                     type="text" 
                                     className="form-control" 
-                                    value={this.state.putName} 
+                                    value={modelName} 
                                     placeholder="Model Name" 
-                                    onChange = { ({target}) => this.setState({modelName: target.value}) }
+                                    onChange = { ({target}) => putModelName({modelName: target.value}) }
                                     />
                                 </div>
-                                <button onClick={() => this.updateModel({'_id': this.state.modelId, 'name': this.state.modelName})} type="button" className="btn btn-warning">PUT</button>
+                                <button onClick={() => this.updateModel({'_id': modelId, 'name': modelName})} type="button" className="btn btn-warning">PUT</button>
                               </div>
                             </div>
                         </div>
@@ -63,8 +57,8 @@ class putContainer extends Component {
 
 
 function mapStateToProps(state) {
-    const { statusReducer, anotherReducer } = state
-    return { statusReducer, anotherReducer }
+    const { statusReducer, anotherReducer, putReducer } = state
+    return { statusReducer, anotherReducer, putReducer }
 }
 
 function mapDispatchToProps(dispatch) {

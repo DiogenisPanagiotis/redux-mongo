@@ -1,6 +1,6 @@
 import { GET_MODELS, ADD_MODEL, DELETE_MODEL, 
         UPDATE_MODEL, GET_USERS, ADD_USER, POST_MODEL_NAME,
-        RESET_POSTED, RESET_MODEL_NAME } from '../constants';
+        RESET_POSTED, RESET_MODEL_NAME, PUT_MODEL_ID, PUT_MODEL_NAME } from '../constants';
 import * as service from '../services'
 
 const actions = {
@@ -38,7 +38,15 @@ const actions = {
     }),
     resetModelName: () => ({
         type: RESET_MODEL_NAME
-    })         
+    }),
+    putModelId: (modelId) => ({
+        type: PUT_MODEL_ID,
+        payload: modelId
+    }),
+    putModelName: (modelName) => ({
+        type: PUT_MODEL_NAME,
+        payload: modelName
+    })                
 }
 
 export default actions;

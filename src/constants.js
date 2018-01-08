@@ -14,3 +14,6 @@ export const POST_MODEL_NAME = 'POST_MODEL_NAME'
 export const RESET_POSTED = 'RESET_POSTED'
 export const RESET_MODEL_NAME = 'RESET_MODEL_NAME'
 
+export const PUT_MODEL_ID = 'PUT_MODEL_ID'
+export const PUT_MODEL_NAME = 'PUT_MODEL_NAME'
+
