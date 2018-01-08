@@ -8,11 +8,14 @@ class postContainer extends Component {
 
     postButtonClick(modelName) {
         const { addModel, resetPosted, resetModelName } = this.props.actions
-        addModel({ name: modelName })
-        resetModelName()
-        setTimeout(() => {
-            resetPosted()
-        }, 3000)
+        const { modelName: modelNameInput } = this.props.postReducer
+        if (modelNameInput.length > 0) {
+            addModel({ name: modelName })
+            resetModelName()
+            setTimeout(() => {
+                resetPosted()
+            }, 3000)  
+        }
     }
 
     render() {
@@ -34,8 +37,9 @@ class postContainer extends Component {
                                     placeholder="Model name" 
                                     onChange = { ({target}) => postModelName(target.value) }
                                     />
-                                <br/>
+                                { modelName.length === 0 && !posted ? <div className="alert alert-danger alert-post" role="alert"> Enter a Model name </div> : null}
                                 { posted ? <div className="alert alert-success alert-post" role="alert"> Post request succeessful! </div> : null}
+                                {modelName.length > 0 ? <br/> : null}
                                 <button onClick={() => this.postButtonClick(modelName)} type="button" className="btn btn-success">POST</button>
                               </div>
                             </div>
