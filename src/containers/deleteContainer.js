@@ -5,16 +5,9 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class deleteContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            modelId: ''
-        }
-    }
-    
     render() {
-        const { deleteModel } = this.props.actions
-        const { modelId } = this.state
+        const { deleteModel, deleteModelId } = this.props.actions
+        const { modelId } = this.props.deleteReducer
         return (
             <div className='container'>
                 <div className='row'>
@@ -27,9 +20,9 @@ class deleteContainer extends Component {
                                     autoFocus 
                                     type="text" 
                                     className="form-control" 
-                                    value={this.state.modelId} 
+                                    value={modelId} 
                                     placeholder="Model Id" 
-                                    onChange = { ({target}) => this.setState({modelId: target.value}) }
+                                    onChange = { ({target}) => deleteModelId(target.value) }
                                     />
                                 <br/>
                                 <button onClick={() => deleteModel(modelId) } type="button" className="btn btn-danger">DELETE</button>
@@ -45,8 +38,8 @@ class deleteContainer extends Component {
 
 
 function mapStateToProps(state) {
-    const { statusReducer, anotherReducer } = state
-    return { statusReducer, anotherReducer }
+    const { deleteReducer } = state
+    return { deleteReducer }
 }
 
 function mapDispatchToProps(dispatch) {

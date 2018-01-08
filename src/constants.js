@@ -17,3 +17,6 @@ export const RESET_MODEL_NAME = 'RESET_MODEL_NAME'
 export const PUT_MODEL_ID = 'PUT_MODEL_ID'
 export const PUT_MODEL_NAME = 'PUT_MODEL_NAME'
 
+export const DELETE_MODEL_ID = 'DELETE_MODEL_ID'
+
+
