@@ -24,7 +24,6 @@ class getContainer extends Component {
     }
 
     render() {
-        // const { getModels } = this.props.actions
         const { models } = this.props.anotherReducer
         const { fetched } = this.state
         return (
@@ -43,7 +42,7 @@ class getContainer extends Component {
                                 {
                                     models ? 
                                         fetched === false ?
-                                            <div className="alert alert-primary" role="alert">There are currently <b>{models.length}</b> models created!</div>
+                                            <div className="alert alert-primary alert-primary-get" role="alert">There are currently <b>{models.length}</b> models created!</div>
                                             :
                                             models.map((model, i) => {
                                                 return (

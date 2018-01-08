@@ -49,6 +49,7 @@
 	margin-top: 1rem;
 }
 
-.alert-post {
+.alert-post, .alert-primary-get {
 	margin-top: 0px;
 }
+
