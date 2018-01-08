@@ -14,6 +14,7 @@
 .jumbotron {
 	background-color: #F8F9FA;
 	border: solid 1px #eee;
+	padding: 32px;
 }
 
 .breadcrumb {

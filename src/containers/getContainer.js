@@ -37,6 +37,7 @@ class getContainer extends Component {
                                 <button onClick={() => this.getModels()} type="button" className="btn btn-primary">GET</button>
                               </div>
                             </div>
+                            { fetched ? <br/> : null }
                             <ul className="list-group">
                                 {
                                     models ? 
