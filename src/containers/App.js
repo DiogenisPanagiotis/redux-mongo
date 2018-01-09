@@ -37,9 +37,11 @@ class App extends Component {
         return (
             <div className='container'>
                 <div className='row'>
-                     <div className='col'>
+                    <div className='col-lg-3'></div>
+                     <div className='col-lg-6'>
                      {this.renderBreadcrumbs()}
                     </div>
+                    <div className='col-lg-3'></div>
                 </div>
             </div>
         )

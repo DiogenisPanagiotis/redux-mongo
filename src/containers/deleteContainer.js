@@ -11,7 +11,8 @@ class deleteContainer extends Component {
         return (
             <div className='container'>
                 <div className='row'>
-                     <div className='col'>
+                    <div className='col-lg-3'></div>
+                    <div className='col-lg-6'>
                         <div className='jumbotron'>
                             <div className="card">
                               <div className="card-body">
@@ -31,6 +32,7 @@ class deleteContainer extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className='col-lg-3'></div>
                 </div>
             </div>
         )
