@@ -30,7 +30,7 @@ class loginContainer extends Component {
                 }
             }
         }
-        
+
         setInvalidLogin()
     }
 
@@ -46,7 +46,6 @@ class loginContainer extends Component {
         let { email, password, invalid } = this.props.loginReducer
         let { loginEmail, loginPassword } = this.props.actions
         let { localStorage } = window
-        console.log('render ', localStorage)
         return (
             <div className='container'>
                 <div className='row'>
@@ -56,7 +55,6 @@ class loginContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">Login</h5>
-
                                   <div className="form-group">
                                     <label htmlFor="exampleInputEmail2">Email address</label>
                                     <input 
@@ -100,7 +98,6 @@ class loginContainer extends Component {
         )
     }
 }
-
 
 function mapStateToProps(state) {
     const { userReducer, loginReducer } = state

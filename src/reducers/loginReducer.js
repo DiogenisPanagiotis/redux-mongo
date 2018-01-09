@@ -11,17 +11,19 @@ export default function loginReducer(state = initialState, action) {
         case LOGIN_EMAIL:
             return {
                 ...state,
-                email: action.payload.email
+                email: action.payload.email,
+                invalid: false
             }    
         case LOGIN_PASSWORD:
             return {
                 ...state,
-                password: action.payload.password
+                password: action.payload.password,
+                invalid: false
             }
         case INVALID_LOGIN:
             return {
                 ...state,
-                invalid: !state.invalid
+                invalid: true
             }                   
         default:
             return state;

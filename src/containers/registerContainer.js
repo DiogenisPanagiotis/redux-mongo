@@ -5,15 +5,6 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class registerContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            username: '',
-            password: '',
-            registered: false,
-            usernameTaken: false
-        }
-    }
 
     componentDidMount() {
         const { getUsers } = this.props.actions
@@ -21,34 +12,38 @@ class registerContainer extends Component {
     }
 
     addUser() {
-        const { addUser, getUsers } = this.props.actions
-        const { username, password, registered, usernameTaken } = this.state
+        const { addUser, getUsers, toggleRegistered, toggleEmailTakenTrue, 
+        toggleEmailTakenFalse, registerEmail, registerPassword } = this.props.actions
+        const { email, password, registered, emailTaken } = this.props.registerReducer
         const { users } = this.props.userReducer
-
-        getUsers()
 
         if (users && users.length > 0) {
             for (let userModel of users) {
-                if (userModel.username === username) {
-                    if (usernameTaken) {
+                if (userModel.username === email) {
+                    if (emailTaken) {
                         return
                     }
-                    this.setState({ usernameTaken: true })
+                    toggleEmailTakenTrue()
                     return
                 }
             }
         }
 
-        addUser({ username: username, password: password })
-
-        this.setState({ usernameTaken: false })
-        this.setState({ registered: true })  
-        getUsers()
+        if (email.length > 0 && password.length > 0) {
+            addUser({ username: email, password: password }).then(() => {
+                registerEmail({ email: '' })
+                registerPassword({ password: '' })
+                toggleEmailTakenFalse() 
+                toggleRegistered() 
+                getUsers()
+            })
+        }
     }
 
     render() {
-        const { username, password, registered, usernameTaken } = this.state
+        const { email, password, registered, emailTaken } = this.props.registerReducer
         const { users } = this.props.userReducer
+        const { registerEmail, registerPassword } = this.props.actions
         return (
             <div className='container'>
                 <div className='row'>
@@ -62,13 +57,13 @@ class registerContainer extends Component {
                                         <label htmlFor="exampleInputEmail1">Email address</label>
                                         <input 
                                             autoFocus
-                                            value={username} 
+                                            value={email} 
                                             type="email" 
                                             className="form-control" 
                                             id="exampleInputEmail1" 
                                             aria-describedby="emailHelp" 
                                             placeholder="Enter email"
-                                            onChange = { ({target}) => this.setState({username: target.value}) }
+                                            onChange = { ({target}) => registerEmail({email: target.value}) }
                                             />
                                         <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
@@ -80,11 +75,11 @@ class registerContainer extends Component {
                                             className="form-control" 
                                             id="exampleInputPassword1" 
                                             placeholder="Password"
-                                            onChange = { ({target}) => this.setState({password: target.value}) }
+                                            onChange = { ({target}) => registerPassword({password: target.value}) }
                                             />
                                     </div>
-                                    { registered && !usernameTaken ? <div className="alert alert-success" role="alert"> Thanks for signing up! </div> : '' }
-                                    { usernameTaken  ? <div className="alert alert-danger" role="alert"> Username taken </div> : '' }
+                                    { registered && !emailTaken ? <div className="alert alert-success" role="alert"> Thanks for signing up! </div> : '' }
+                                    { emailTaken  ? <div className="alert alert-danger" role="alert"> Email is already taken </div> : '' }
                                     <button onClick={() => this.addUser()} type="submit" className="btn btn-primary">Sign Up</button>
                                 </div>
                             </div>
@@ -97,10 +92,9 @@ class registerContainer extends Component {
     }
 }
 
-
 function mapStateToProps(state) {
-    const { statusReducer, anotherReducer, userReducer } = state
-    return { statusReducer, anotherReducer, userReducer }
+    const { anotherReducer, userReducer, registerReducer } = state
+    return { anotherReducer, userReducer, registerReducer }
 }
 
 function mapDispatchToProps(dispatch) {

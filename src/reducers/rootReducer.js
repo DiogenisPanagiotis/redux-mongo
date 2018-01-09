@@ -7,6 +7,7 @@ import putReducer from './putReducer'
 import deleteReducer from './deleteReducer'
 import getReducer from './getReducer'
 import loginReducer from './loginReducer'
+import registerReducer from './registerReducer'
 
 const rootReducer = combineReducers({
     statusReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     putReducer,
     deleteReducer,
     getReducer,
-    loginReducer
+    loginReducer,
+    registerReducer
 })
 
 export default rootReducer
