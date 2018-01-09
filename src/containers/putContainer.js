@@ -31,7 +31,7 @@ class putContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">PUT Request</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Update a model by providing a model name and Id.</h6>
+                                <h6 className="card-subtitle mb-2 text-muted">Update a model by providing a model name and Id.</h6>
                                 <div className="input-group mb-3">
                                   <input 
                                     autoFocus 

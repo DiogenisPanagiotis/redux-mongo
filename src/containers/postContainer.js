@@ -30,7 +30,7 @@ class postContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">POST Request</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Create a model by providing a model name.</h6>
+                                <h6 className="card-subtitle mb-2 text-muted">Create a model by providing a model name.</h6>
                                 <input 
                                     autoFocus 
                                     type="text" 
