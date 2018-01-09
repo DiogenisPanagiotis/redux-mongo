@@ -29,6 +29,7 @@ class postContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">POST Request</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Create a model by providing a model name.</h6>
                                 <input 
                                     autoFocus 
                                     type="text" 
@@ -37,10 +38,10 @@ class postContainer extends Component {
                                     placeholder="Model name" 
                                     onChange = { ({target}) => postModelName(target.value) }
                                     />
-                                { modelName.length === 0 && !posted ? <div className="alert alert-danger alert-post" role="alert"> Enter a Model name </div> : null}
+                                { modelName.length === 0 && !posted ? <small id="postFormMessage" className="form-text text-muted">Please provide a model name.</small> : null}
                                 { posted ? <div className="alert alert-success alert-post" role="alert"> Post request succeessful! </div> : null}
-                                {modelName.length > 0 ? <br/> : null}
-                                <button onClick={() => this.postButtonClick(modelName)} type="button" className="btn btn-success">POST</button>
+                                {modelName.length > 0 ? <div className="custom-break"></div> : null}
+                                <button onClick={() => this.postButtonClick(modelName)} type="button" className="btn btn-success btn-block">POST</button>
                               </div>
                             </div>
                         </div>

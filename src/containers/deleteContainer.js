@@ -16,6 +16,7 @@ class deleteContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">DELETE Request</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Delete a model by providing a model Id.</h6>
                                 <input 
                                     autoFocus 
                                     type="text" 
@@ -24,8 +25,8 @@ class deleteContainer extends Component {
                                     placeholder="Model Id" 
                                     onChange = { ({target}) => deleteModelId(target.value) }
                                     />
-                                <br/>
-                                <button onClick={() => deleteModel(modelId) } type="button" className="btn btn-danger">DELETE</button>
+                                { modelId.length === 0 ? <small id="postFormMessage" className="form-text text-muted">Please provide a model Id.</small> : <div className="custom-break"></div>}
+                                <button onClick={() => deleteModel(modelId) } type="button" className="btn btn-danger btn-block">DELETE</button>
                               </div>
                             </div>
                         </div>

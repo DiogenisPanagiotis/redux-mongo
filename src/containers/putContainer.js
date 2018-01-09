@@ -30,6 +30,7 @@ class putContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">PUT Request</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Update a model by providing a model name and model Id.</h6>
                                 <div className="input-group mb-3">
                                   <input 
                                     autoFocus 
@@ -47,7 +48,17 @@ class putContainer extends Component {
                                     onChange = { ({target}) => putModelName({modelName: target.value}) }
                                     />
                                 </div>
-                                <button onClick={() => this.updateModel({'_id': modelId, 'name': modelName})} type="button" className="btn btn-warning">PUT</button>
+                                <div className='container'>
+                                    <div className='row'>
+                                        <div className='col col-put'>
+                                        { modelId.length === 0 ? <small id="postFormMessage" className="form-text text-muted">Please provide a model Id.</small> : <div className="custom-break"></div>}
+                                        </div>
+                                        <div className='col col-put'>
+                                        { modelName.length === 0 ? <small id="postFormMessage" className="form-text text-muted">Please provide a model name.</small> : <div className="custom-break"></div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onClick={() => this.updateModel({'_id': modelId, 'name': modelName})} type="button" className="btn btn-warning btn-block">PUT</button>
                               </div>
                             </div>
                         </div>

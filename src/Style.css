@@ -53,3 +53,20 @@
 .alert-post, .alert-primary-get {
 	/*margin-top: 0px;*/
 }
+
+#postFormMessage {
+	color: #dc3545 !important;
+	margin-bottom: 4px;
+}
+
+.col-put {
+	padding-left: 0px;
+}
+
+.mb-3 {
+	margin-bottom: 0px!important;
+}
+
+.custom-break {
+	height: 27px;
+}
