@@ -5,6 +5,7 @@ import userReducer from './userReducer'
 import postReducer from './postReducer'
 import putReducer from './putReducer'
 import deleteReducer from './deleteReducer'
+import getReducer from './getReducer'
 
 const rootReducer = combineReducers({
     statusReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     userReducer,
     postReducer,
     putReducer,
-    deleteReducer
+    deleteReducer,
+    getReducer
 })
 
 export default rootReducer

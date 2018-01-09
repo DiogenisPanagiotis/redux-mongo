@@ -1,7 +1,7 @@
 import { GET_MODELS, ADD_MODEL, DELETE_MODEL, 
         UPDATE_MODEL, GET_USERS, ADD_USER, POST_MODEL_NAME,
         RESET_POSTED, RESET_MODEL_NAME, PUT_MODEL_ID, PUT_MODEL_NAME,
-        DELETE_MODEL_ID } from '../constants';
+        DELETE_MODEL_ID, TOGGLE_FETCHED } from '../constants';
 import * as service from '../services'
 
 const actions = {
@@ -51,7 +51,10 @@ const actions = {
     deleteModelId: (modelId) => ({
         type: DELETE_MODEL_ID,
         payload: modelId
-    })                
+    }),
+    toggleFetched: () => ({
+        type: TOGGLE_FETCHED
+    })                   
 }
 
 export default actions;

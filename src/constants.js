@@ -19,4 +19,5 @@ export const PUT_MODEL_NAME = 'PUT_MODEL_NAME'
 
 export const DELETE_MODEL_ID = 'DELETE_MODEL_ID'
 
+export const TOGGLE_FETCHED = 'TOGGLE_FETCHED'
 

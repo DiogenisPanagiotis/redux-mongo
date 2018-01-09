@@ -5,27 +5,31 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class getContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            fetched: false
+    // constructor(props){
+    //     super(props)
+    //     this.state = {
+    //         fetched: false
+    //     }
+    // }
+
+    componentDidMount() {
+        const { getModels, toggleFetched } = this.props.actions
+        const { fetched } = this.props.getReducer
+        getModels()
+        if (fetched) {
+            toggleFetched()
         }
     }
 
-    componentDidMount() {
-        const { getModels } = this.props.actions
-        getModels()
-    }
-
     getModels() {
-        const { getModels } = this.props.actions
+        const { getModels, toggleFetched } = this.props.actions
         getModels()
-        this.setState({ fetched: true})
+        toggleFetched()
     }
 
     render() {
         const { models } = this.props.anotherReducer
-        const { fetched } = this.state
+        const { fetched } = this.props.getReducer
         return (
             <div className='container'>
                 <div className='row'>
@@ -66,8 +70,8 @@ class getContainer extends Component {
 
 
 function mapStateToProps(state) {
-    const { statusReducer, anotherReducer } = state
-    return { statusReducer, anotherReducer }
+    const { statusReducer, anotherReducer, getReducer } = state
+    return { statusReducer, anotherReducer, getReducer }
 }
 
 function mapDispatchToProps(dispatch) {
