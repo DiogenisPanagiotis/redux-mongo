@@ -6,6 +6,7 @@ import postReducer from './postReducer'
 import putReducer from './putReducer'
 import deleteReducer from './deleteReducer'
 import getReducer from './getReducer'
+import loginReducer from './loginReducer'
 
 const rootReducer = combineReducers({
     statusReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     postReducer,
     putReducer,
     deleteReducer,
-    getReducer
+    getReducer,
+    loginReducer
 })
 
 export default rootReducer

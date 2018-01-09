@@ -5,16 +5,6 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class loginContainer extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            username: '',
-            password: '',
-            verified: false,
-            verifiedUser: '',
-            invalid: false
-        }
-    }
 
     componentDidMount() {
         const { getUsers } = this.props.actions
@@ -22,37 +12,41 @@ class loginContainer extends Component {
     }
 
     verifyUser() {
-        const { addUser, getUsers } = this.props.actions
-        let { username, password, verified, invalid } = this.state
+        const { getUsers, setInvalidLogin } = this.props.actions
+        let { email, password, invalid } = this.props.loginReducer
         let { users } = this.props.userReducer
-
-        getUsers()
+        let { localStorage } = window
 
         if (users && users.length > 0) {
             for (let userModel of users) {
-                if (userModel.username === username && userModel.password === password) {
-                    this.setState({ verified: true })
-                    this.setState({ verifiedUser: userModel.username })
+                if (userModel.username === email && userModel.password === password) {
+                    let userCookie = JSON.stringify({ email: userModel.username })
+                    localStorage.setItem('user', userCookie)
                     if (invalid === true) {
-                        this.setState({ invalid: false })
+                        setInvalidLogin()
                     }   
                     getUsers()
                     return
                 }
             }
-
         }
         
-        this.setState({ invalid: true })
-        getUsers()
+        setInvalidLogin()
     }
 
     logout() {
-        this.setState({ verified: false })
+        let { localStorage } = window
+        let { loginEmail, loginPassword } = this.props.actions
+        localStorage.removeItem('user')
+        loginEmail({ email: ''})
+        loginPassword({ password: ''})
     }
 
     render() {
-        let { username, password, verified, verifiedUser, invalid } = this.state
+        let { email, password, invalid } = this.props.loginReducer
+        let { loginEmail, loginPassword } = this.props.actions
+        let { localStorage } = window
+        console.log('render ', localStorage)
         return (
             <div className='container'>
                 <div className='row'>
@@ -67,13 +61,13 @@ class loginContainer extends Component {
                                     <label htmlFor="exampleInputEmail2">Email address</label>
                                     <input 
                                         autoFocus
-                                        value={username} 
+                                        value={email} 
                                         type="email" 
                                         className="form-control" 
                                         id="exampleInputEmail2" 
                                         aria-describedby="emailHelp" 
                                         placeholder="Enter email"
-                                        onChange = { ({target}) => this.setState({username: target.value}) }
+                                        onChange = { ({target}) => loginEmail({email: target.value}) }
                                         />
                                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                   </div>
@@ -85,16 +79,16 @@ class loginContainer extends Component {
                                         className="form-control" 
                                         id="exampleInputPassword2" 
                                         placeholder="Password"
-                                        onChange = { ({target}) => this.setState({password: target.value}) }
+                                        onChange = { ({target}) => loginPassword({password: target.value}) }
                                         />
                                   </div>
-                                  { verified ? <div className="alert alert-primary" role="alert"> Welcome {verifiedUser} </div> : ''}
-                                  { invalid && !verified ? <div className="alert alert-danger" role="alert"> Invalid username or password </div> : ''}
+                                  { localStorage.user ? <div className="alert alert-primary" role="alert"> Welcome {JSON.parse(localStorage.getItem('user')).email} </div> : ''}
+                                  { invalid && !localStorage.user ? <div className="alert alert-danger" role="alert"> Invalid username or password </div> : ''}
                                   {
-                                    !verified?
-                                    <button onClick={() => this.verifyUser()} type="submit" className="btn btn-primary">Login</button>
-                                    :
+                                    localStorage.user ?
                                     <button onClick={() => this.logout()} type="submit" className="btn btn-danger">Logout</button>
+                                    :
+                                    <button onClick={() => this.verifyUser()} type="submit" className="btn btn-primary">Login</button>
                                   }
                               </div>
                             </div>
@@ -109,8 +103,8 @@ class loginContainer extends Component {
 
 
 function mapStateToProps(state) {
-    const { userReducer } = state
-    return { userReducer }
+    const { userReducer, loginReducer } = state
+    return { userReducer, loginReducer }
 }
 
 function mapDispatchToProps(dispatch) {

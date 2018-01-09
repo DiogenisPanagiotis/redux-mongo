@@ -21,3 +21,7 @@ export const DELETE_MODEL_ID = 'DELETE_MODEL_ID'
 
 export const TOGGLE_FETCHED = 'TOGGLE_FETCHED'
 
+export const LOGIN_EMAIL = 'LOGIN_EMAIL'
+export const LOGIN_PASSWORD = 'LOGIN_PASSWORD'
+export const INVALID_LOGIN = 'INVALID_LOGIN'
+

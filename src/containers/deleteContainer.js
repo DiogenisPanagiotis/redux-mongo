@@ -26,10 +26,11 @@ class deleteContainer extends Component {
                                     placeholder="Model Id" 
                                     onChange = { ({target}) => deleteModelId(target.value) }
                                     />
-                                { modelId.length === 0 ? <small id="postFormMessage" className="form-text text-muted">Please provide a model Id.</small> : <div className="custom-break"></div>}
-                                <button onClick={() => deleteModel(modelId) } type="button" className="btn btn-danger btn-block">DELETE</button>
+                                { modelId.length === 0 ? <small id="postFormMessage" className="form-text text-muted">Please provide a model Id.</small> : null}
                               </div>
                             </div>
+                            <br/>
+                            <button onClick={() => deleteModel(modelId) } type="button" className="btn btn-danger btn-block">DELETE</button>
                         </div>
                     </div>
                     <div className='col-lg-3'></div>

@@ -41,10 +41,10 @@ class postContainer extends Component {
                                     />
                                 { modelName.length === 0 && !posted ? <small id="postFormMessage" className="form-text text-muted">Please provide a model name.</small> : null}
                                 { posted ? <div className="alert alert-success alert-post" role="alert"> Post request succeessful! </div> : null}
-                                {modelName.length > 0 ? <div className="custom-break"></div> : null}
-                                <button onClick={() => this.postButtonClick(modelName)} type="button" className="btn btn-success btn-block">POST</button>
                               </div>
                             </div>
+                            <br/>
+                            <button onClick={() => this.postButtonClick(modelName)} type="button" className="btn btn-success btn-block">POST</button>
                         </div>
                     </div>
                     <div className='col-lg-3'></div>

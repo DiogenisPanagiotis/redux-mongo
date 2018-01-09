@@ -85,7 +85,7 @@ class registerContainer extends Component {
                                     </div>
                                     { registered && !usernameTaken ? <div className="alert alert-success" role="alert"> Thanks for signing up! </div> : '' }
                                     { usernameTaken  ? <div className="alert alert-danger" role="alert"> Username taken </div> : '' }
-                                    <button onClick={() => this.addUser()} type="submit" className="btn btn-primary">Submit</button>
+                                    <button onClick={() => this.addUser()} type="submit" className="btn btn-primary">Sign Up</button>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,8 @@
 import { GET_MODELS, ADD_MODEL, DELETE_MODEL, 
         UPDATE_MODEL, GET_USERS, ADD_USER, POST_MODEL_NAME,
         RESET_POSTED, RESET_MODEL_NAME, PUT_MODEL_ID, PUT_MODEL_NAME,
-        DELETE_MODEL_ID, TOGGLE_FETCHED } from '../constants';
+        DELETE_MODEL_ID, TOGGLE_FETCHED, LOGIN_EMAIL, LOGIN_PASSWORD,
+        INVALID_LOGIN } from '../constants';
 import * as service from '../services'
 
 const actions = {
@@ -54,7 +55,18 @@ const actions = {
     }),
     toggleFetched: () => ({
         type: TOGGLE_FETCHED
-    })                   
+    }),
+    loginEmail: (email) => ({
+        type: LOGIN_EMAIL,
+        payload: email
+    }),
+    loginPassword: (password) => ({
+        type: LOGIN_PASSWORD,
+        payload: password
+    }),
+    setInvalidLogin: () => ({
+        type: INVALID_LOGIN
+    })                    
 }
 
 export default actions;
