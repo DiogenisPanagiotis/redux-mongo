@@ -69,7 +69,7 @@ class loginContainer extends Component {
                                         />
                                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                   </div>
-                                  <div className="form-group">
+                                  <div className="form-group form-group-password">
                                     <label htmlFor="exampleInputPassword2">Password</label>
                                     <input 
                                         value={password} 
@@ -81,15 +81,16 @@ class loginContainer extends Component {
                                         />
                                   </div>
                                   { localStorage.user ? <div className="alert alert-primary" role="alert"> Welcome {JSON.parse(localStorage.getItem('user')).email} </div> : ''}
-                                  { invalid && !localStorage.user ? <div className="alert alert-danger" role="alert"> Invalid username or password </div> : ''}
-                                  {
-                                    localStorage.user ?
-                                    <button onClick={() => this.logout()} type="submit" className="btn btn-danger">Logout</button>
-                                    :
-                                    <button onClick={() => this.verifyUser()} type="submit" className="btn btn-primary">Login</button>
-                                  }
+                                  { invalid && !localStorage.user ? <small id="postFormMessage" className="form-text text-muted">Invalid username or password.</small> : null}
                               </div>
                             </div>
+                            <br/>
+                            {
+                                localStorage.user ?
+                                <button onClick={() => this.logout()} type="submit" className="btn btn-danger btn-block">Logout</button>
+                                :
+                                <button onClick={() => this.verifyUser()} type="submit" className="btn btn-primary btn-block">Login</button>
+                            }
                         </div>
                     </div>
                     <div className='col-lg-3'></div>

@@ -67,7 +67,7 @@ class registerContainer extends Component {
                                             />
                                         <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
-                                    <div className="form-group">
+                                    <div className="form-group form-group-password">
                                         <label htmlFor="exampleInputPassword1">Password</label>
                                         <input 
                                             value={password} 
@@ -79,10 +79,11 @@ class registerContainer extends Component {
                                             />
                                     </div>
                                     { registered && !emailTaken ? <div className="alert alert-success" role="alert"> Thanks for signing up! </div> : '' }
-                                    { emailTaken  ? <div className="alert alert-danger" role="alert"> Email is already taken </div> : '' }
-                                    <button onClick={() => this.addUser()} type="submit" className="btn btn-primary">Sign Up</button>
+                                    { emailTaken  ? <small id="postFormMessage" className="form-text text-muted">Email is already taken.</small> : '' }
                                 </div>
                             </div>
+                            <br/>
+                            <button onClick={() => this.addUser()} type="submit" className="btn btn-primary btn-block">Sign Up</button>
                         </div>
                     </div>
                     <div className='col-lg-3'></div>
