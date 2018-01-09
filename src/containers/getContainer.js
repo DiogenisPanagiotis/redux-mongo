@@ -5,12 +5,6 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class getContainer extends Component {
-    // constructor(props){
-    //     super(props)
-    //     this.state = {
-    //         fetched: false
-    //     }
-    // }
 
     componentDidMount() {
         const { getModels, toggleFetched } = this.props.actions
