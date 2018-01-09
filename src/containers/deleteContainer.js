@@ -5,6 +5,14 @@ import actions from '../actions/actions'
 import '../Style.css'
 
 class deleteContainer extends Component {
+
+    deleteModel(modelId) {
+        const { deleteModel, deleteModelId } = this.props.actions
+        if (deleteModelId.length > 0) {
+            deleteModel(modelId)
+        }
+    }
+
     render() {
         const { deleteModel, deleteModelId } = this.props.actions
         const { modelId } = this.props.deleteReducer
@@ -17,7 +25,7 @@ class deleteContainer extends Component {
                             <div className="card">
                               <div className="card-body">
                                 <h5 className="card-title">DELETE Request</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Delete a model by providing a model Id.</h6>
+                                <h6 className="card-subtitle mb-2 text-muted">Delete a model by providing a model Id.</h6>
                                 <input 
                                     autoFocus 
                                     type="text" 
@@ -30,7 +38,7 @@ class deleteContainer extends Component {
                               </div>
                             </div>
                             <br/>
-                            <button onClick={() => deleteModel(modelId) } type="button" className="btn btn-danger btn-block">DELETE</button>
+                            <button onClick={() => this.deleteModel(modelId) } type="button" className="btn btn-danger btn-block">DELETE</button>
                         </div>
                     </div>
                     <div className='col-lg-3'></div>
@@ -39,7 +47,6 @@ class deleteContainer extends Component {
         )
     }
 }
-
 
 function mapStateToProps(state) {
     const { deleteReducer } = state

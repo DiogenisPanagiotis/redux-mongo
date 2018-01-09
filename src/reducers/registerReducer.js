@@ -14,12 +14,14 @@ export default function registerReducer(state = initialState, action) {
         case REGISTER_EMAIL:
             return {
                 ...state,
-                email: action.payload.email
+                email: action.payload.email,
+                emailTaken: false
             }    
         case REGISTER_PASSWORD:
             return {
                 ...state,
-                password: action.payload.password
+                password: action.payload.password,
+                emailTaken: false
             }
         case TOGGLE_REGISTERED:
             return {
